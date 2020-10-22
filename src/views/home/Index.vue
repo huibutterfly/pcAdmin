@@ -11,7 +11,6 @@
         <!-- <img style="width: 30px" :style="{width: item.width, height: item.height}" id="img" src="https://lximg.huaguosun.com/1603356358kjsgc16gm7r.jpg"> -->
       </div>
     </draggable>
-     
   </div>
 </template>
 
@@ -35,36 +34,33 @@ export default {
       ],
       currentX: 0,
       currentY: 0,
+      currentWare: null
     };
   },
   created() {
     // setTimeout(() => {
-    //   console.log(document.getElementById('img').onload)
-    //   const img = document.getElementById('img')
-    //   var src = img.getAttribute('src');
-    //   img.setAttribute('src','');
-    //   img.onload = function(){
+    //   const img1 = document.getElementById('img1')
+    //   var src1 = img1.getAttribute('src');
+    //   img1.setAttribute('src','');
+    //   img1.onload = function(){
     //     alert(1);
     //   };
-    //   img.setAttribute('src',src);
-    //   // xiu.onload = xiu.onreadystatechange = function(){
-    //   //   console.log('1111111111')
-    //   // }
-    // }, 50)
+    //   img1.setAttribute('src', src1);
+    //   const img2 = document.getElementById('img2')
+    //   var src2 = img2.getAttribute('src');
+    //   img2.setAttribute('src','');
+    //   img2.onload = function(){
+    //     alert(2);
+    //   };
+    //   img2.setAttribute('src', src2);
+    //   }, 50)
     
   },
   methods: {
     setStartELement(e){
       const currentWare = e.originalEvent
+      this.currentWare = e.originalEvent
       const eIndex = currentWare.target.id.split("_")[1]
-      // const eIndex = e.originalEvent.target.id.split("_")[1]
-      // const layerX = this.dinnerware[eIndex].x
-      // const layerY = this.dinnerware[eIndex].y
-      // console.log(currentWare)
-      // currentWare.target.draggable = true
-      // if(layerX != 0 && layerY != 0){
-      //   currentWare.target.style.transform = `translate(${layerX}px, ${layerY}px)`
-      // }
       this.currentX = currentWare.x
       this.currentY = currentWare.y
       this.currentWareIndex = eIndex
@@ -72,6 +68,24 @@ export default {
     setEndELement(e){
       const currentWare = e.originalEvent
       console.log(currentWare)
+      var div = document.getElementById("dinnerware");
+      var x=event.clientX;
+      var y=event.clientY;
+      var divx1 = div.offsetLeft;
+      var divy1 = div.offsetTop;
+      var divx2 = div.offsetLeft + div.offsetWidth;
+      var divy2 = div.offsetTop + div.offsetHeight;
+      if(!(x < divx1 || x > divx2 || y < divy1 || y > divy2)){
+        console.log('111111111111111')
+        console.log(currentWare.target.left)
+        this.dinnerware[this.currentWareIndex].x = 0
+        this.dinnerware[this.currentWareIndex].y = 0
+        this.currentWare.target.style.left = 0
+        this.currentWare.target.style.top = 0
+        console.log(currentWare.target.left)
+        return
+      }
+      
       // const eWidth = this.dinnerware[eIndex].width.split("px")[0]
       // const eHeight = this.dinnerware[eIndex].height.split("px")[0]
       // const layerX = currentWare.x - this.currentX
