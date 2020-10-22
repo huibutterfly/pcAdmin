@@ -5,37 +5,136 @@
         <div class="text">中轴线</div>
       </div>
       <div class="dinner" v-for="(item, index) in dinnerware" :key="index" :style="{left: item.left, top: item.top}">
-        <div v-for="(item2, index2) in item.size" :key="index2" >{{item2}}</div>
+        <div class='line'  :style="{width: item.lineWidth+'px'}"></div>
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item3 in item.options"
+            :key="item3.value"
+            :label="item3.label"
+            :value="item3.value">
+          </el-option>
+        </el-select>
+ 
       </div>
     </div>
-     <draggable id="dinnerware"  v-model="dinnerware" @start="setStartELement" @end="setEndELement" draggable=".ware" :sort="false">
-      <div class="ware" v-for="(item, index) in dinnerware" :key="index" :id="'ware_'+index" :style="{width: item.width, height: item.height, borderRadius: item.width}">
 
-      </div>
-    </draggable>
+  
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
 import { mixinDevice } from "@/utils/mixin";
 
 export default {
   name: "Index",
   mixins: [mixinDevice],
-  components: {
-    draggable
-  },
   data() {
     return {
       dinnerware: [
-        { x: 0, y: 0, left: '193px', top: '60px', image: '', width: '70px', height: '70px',size:[5,3]},
-        { x: 0, y: 0, left: '193px', top: '120px', image: '', width: '80px', height: '80px',size:[1,1]},
-        { x: 0, y: 0, left: '153px', top: '160px', image: '', width: '100px', height: '100px',size:[1,1]},
-        { x: 0, y: 0, left: '213px', top: '160px', image: '', width: '60px', height: '60px',size:[1,1]},
-        { x: 0, y: 0, left: '253px', top: '160px', image: '', width: '50px', height: '50px',size:[1,2]},
-        { x: 0, y: 0, left: '193px', top: '230px', image: '', width: '70px', height: '70px',size:['1/3','2']}
+        { x: 0, y: 0, left: '193px', top: '60px', image: '', width: '70px', height: '70px',size:[5,3], lineWidth:'40',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],},
+        { x: 0, y: 0, left: '193px', top: '120px', image: '', width: '80px', height: '80px',size:[1,1],lineWidth:'43',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],},
+        { x: 0, y: 0, left: '153px', top: '160px', image: '', width: '100px', height: '100px',size:[1,1],lineWidth:'43',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],},
+        { x: 0, y: 0, left: '213px', top: '160px', image: '', width: '60px', height: '60px',size:[1,1],lineWidth:'43',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],},
+        { x: 0, y: 0, left: '253px', top: '160px', image: '', width: '50px', height: '50px',size:[1,2],lineWidth:'43',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],},
+        { x: 0, y: 0, left: '193px', top: '230px', image: '', width: '70px', height: '70px',size:['1/3','2'],lineWidth:'43',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],}
       ],
+      value: '',
       currentX: 0,
       currentY: 0,
       currentWare: null

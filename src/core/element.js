@@ -13,6 +13,8 @@ import {
   RadioButton,
   RadioGroup,
   Submenu,
+  Select,
+  Option,
   Tooltip,
   Drawer,
   Tabs,
@@ -44,3 +46,5 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Pagination)
 Vue.use(TabPane)
+Vue.use(Select)
+Vue.use(Option)

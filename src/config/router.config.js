@@ -11,7 +11,8 @@ export const asyncRouterMap = [{
     meta: {
       title: '首页'
     },
-    children: [{
+    children: [
+      {
         path: '/dashboard',
         name: 'dashboard',
         component: () => import('@/views/home/Index'),
@@ -21,27 +22,18 @@ export const asyncRouterMap = [{
           icon: 'home',
           permission: 'dashboard_index'
         }
+      },
+      {
+        path: '/dashboard2',
+        name: 'dashboard2',
+        component: () => import('@/views/home/Index2'),
+        hidden: false,
+        meta: {
+          title: '首页',
+          icon: 'home',
+          permission: 'dashboard_index'
+        }
       }
-      // {
-      //   path: '/purchase',
-      //   name: 'purchase',
-      //   component: () => import('@/views/purchase/supplier/Supplier'),
-      //   meta: { title: '关于我们', keepAlive: true, icon: 'bxAnaalyse', permission: 'purchase' }
-      // },
-      // {
-      //   path: '/purchase',
-      //   name: 'purchase',
-      //   component: view,
-      //   meta: { title: '解决方案', keepAlive: true, icon: 'bxAnaalyse', permission: 'purchase' },
-      //   children: [
-      //     {
-      //       path: '/purchase/supplier',
-      //       name: 'purchase_supplierDetail',
-      //       component: () => import('@/views/purchase/supplier/Supplier'),
-      //       meta: { title: '方案一', keepAlive: false, hiddenHeaderContent: true, permission: 'purchase_supplierDetail' }
-      //     }
-      //   ]
-      // }
     ]
   },
   {
