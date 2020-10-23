@@ -41,6 +41,12 @@ export const asyncRouterMap = [{
         hidden: false,
         meta: {
           title: '首页',
+        path: '/nine',
+        name: 'nine',
+        component: () => import('@/views/home/ninePage'),
+        hidden: false,
+        meta: {
+          title: '选择题9',
           icon: 'home',
           permission: 'dashboard_index'
         }

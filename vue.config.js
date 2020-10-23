@@ -65,7 +65,8 @@ const vueConfig = {
   css: {
     loaderOptions: {
       sass: {
-        javascriptEnabled: true
+        data: `@import "@/assets/css/base.scss";`
+        // javascriptEnabled: true
       }
     }
   },
