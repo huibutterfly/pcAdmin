@@ -9,9 +9,9 @@
       </el-drawer>
     </div>
     <div class="contentItem">      
-      <div class="topMenu pcMenu" v-if="!isMobile()">
+      <!-- <div class="topMenu pcMenu" v-if="!isMobile()">
         <SideMenu :menus="menus" :collapsible="false"></SideMenu>
-      </div>
+      </div> -->
       <keep-alive>
         <router-view />
       </keep-alive>

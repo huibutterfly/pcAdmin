@@ -204,9 +204,9 @@ export default {
         background-color: rgb(206, 205, 252);
         cursor: pointer;
       }
-      #ware_0 {
+      // #ware_0 {
         // transform: translate(-256px, 9px);
-      }
+      // }
     }
   }
 

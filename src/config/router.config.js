@@ -33,6 +33,17 @@ export const asyncRouterMap = [{
           icon: 'home',
           permission: 'dashboard_index'
         }
+      },
+      {
+        path: '/dashboard3',
+        name: 'dashboard3',
+        component: () => import('@/views/home/Index4'),
+        hidden: false,
+        meta: {
+          title: '首页',
+          icon: 'home',
+          permission: 'dashboard_index'
+        }
       }
     ]
   },
