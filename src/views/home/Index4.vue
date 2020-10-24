@@ -72,9 +72,9 @@ export default {
     setPoint(startObj, endObj){
       console.log(startObj, endObj)
       var y_start = 300;
-      var x_start = (this.startIndex + 1) * (50 + 20) - 25
+      var x_start = (this.startIndex + 1) * (50 + 20) - 15
       var y_end = 300 + 200 
-      var x_end = (this.endIndex + 1) * (50 + 20) - 25
+      var x_end = (this.endIndex + 1) * (50 + 20) - 15
       return [y_start, x_start, y_end, x_end]
     },
     setLine(){
