@@ -1,18 +1,21 @@
 <template>
   <div id="daskDrag">
-    <div id="desk">
-      <div class="center_line">
-        <div class="text">中轴线</div>
-      </div>
-      <div class="dinner" v-for="(item, index) in dinnerware" :key="index" :style="{left: item.left, top: item.top}">
-        <div v-for="(item2, index2) in item.size" :key="index2" >{{item2}}</div>
-      </div>
+    <div class="title">
+      <h3>拖拽题</h3>
+      <h4>下面是收台的顺序，请按顺序拖拽到正确的位置上</h4>
     </div>
-     <draggable id="dinnerware"  v-model="dinnerware" @start="setStartELement" @end="setEndELement" draggable=".ware" :sort="false">
-      <div class="ware" v-for="(item, index) in dinnerware" :key="index" :id="'ware_'+index" :style="{width: item.width, height: item.height, borderRadius: item.width}">
-
+    <draggable id="dinnerware"  v-model="dinnerware" @start="setStartELement" @end="setEndELement" draggable=".ware" :sort="false">
+      <div class="ware" v-for="(item, index) in dinnerware" :key="index" :id="'ware_'+index" :style="{left: index * (80 + 20)  + 'px', top: '10px'}">
+        <img :src="item.image" class="wareImage" :id="'wareImage_'+index">
       </div>
     </draggable>
+
+    <div id="desk">
+      <div :id="'dinner' + index" class="dinner" v-for="(item, index) in dinnerware" :key="index"
+        :style="{left: index * (80 + 20)  + 'px', top: '130px'}">
+        {{index + 1}}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,132 +32,44 @@ export default {
   data() {
     return {
       dinnerware: [
-        { x: 0, y: 0, left: '193px', top: '60px', image: '', width: '70px', height: '70px',size:[5,3]},
-        { x: 0, y: 0, left: '193px', top: '120px', image: '', width: '80px', height: '80px',size:[1,1]},
-        { x: 0, y: 0, left: '153px', top: '160px', image: '', width: '100px', height: '100px',size:[1,1]},
-        { x: 0, y: 0, left: '213px', top: '160px', image: '', width: '60px', height: '60px',size:[1,1]},
-        { x: 0, y: 0, left: '253px', top: '160px', image: '', width: '50px', height: '50px',size:[1,2]},
-        { x: 0, y: 0, left: '193px', top: '230px', image: '', width: '70px', height: '70px',size:['1/3','2']}
+        { first: true, x: 0, y: 10, image:'/images/ware_01.png', left: '193px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_02.jpg', left: '193px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_03.png', left: '153px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_04.png', left: '213px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_05.png', left: '253px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_06.png', left: '253px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'/images/ware_07.png', left: '193px', pcTop: '0px', mobile: ''}
       ],
       currentX: 0,
       currentY: 0,
-      currentWare: null
+      currentWare: null,
     };
   },  
   created() {
-    // setTimeout(() => {
-    //   const img1 = document.getElementById('img1')
-    //   var src1 = img1.getAttribute('src');
-    //   img1.setAttribute('src','');
-    //   img1.onload = function(){
-    //     alert(1);
-    //   };
-    //   img1.setAttribute('src', src1);
-    //   const img2 = document.getElementById('img2')
-    //   var src2 = img2.getAttribute('src');
-    //   img2.setAttribute('src','');
-    //   img2.onload = function(){
-    //     alert(2);
-    //   };
-    //   img2.setAttribute('src', src2);
-    //   }, 50)
-    
   },
   methods: {
     setStartELement(e){
-      const currentWare = e.originalEvent
-      // console.log(currentWare)
       this.currentWare = e.originalEvent
-      const eIndex = currentWare.target.id.split("_")[1]
-      this.currentX = currentWare.x
-      this.currentY = currentWare.y
+      const eIndex = this.currentWare.target.id.split("_")[1]
+      this.currentX = this.currentWare.x
+      this.currentY = this.currentWare.y
+      if(this.dinnerware[eIndex].first){
+        this.currentX = this.currentX - eIndex * (80 + 20)
+      }
       this.currentWareIndex = eIndex
     },
     setEndELement(e){
       const currentWare = e.originalEvent
-      console.log(currentWare)
-      console.log(e)
-
-
-      var div = document.getElementById("dinnerware");
-      var x = event.clientX;
-      var y = event.clientY;
-      var divx1 = div.offsetLeft;
-      var divy1 = div.offsetTop;
-      var divx2 = div.offsetLeft + div.offsetWidth;
-      var divy2 = div.offsetTop + div.offsetHeight;
-
-      let _x = 0
-      let _y = 0
-      let layerX = 0
-      let layerY = 0
-      if(this.isDsktop()){
-        console.log(div)
-        // 如果放回到选取区内 这自动规整
-        if(!(x < divx1 || x > divx2 || y < divy1 || y > divy2)){
-          this.dinnerware[this.currentWareIndex].x = 0
-          this.dinnerware[this.currentWareIndex].y = 0
-          this.currentWare.target.style.left = 0
-          this.currentWare.target.style.top = 0
-          return
-        }
-        
-        // const eWidth = this.dinnerware[eIndex].width.split("px")[0]
-        // const eHeight = this.dinnerware[eIndex].height.split("px")[0]
-        // const layerX = currentWare.x - this.currentX
-        // const layerY = currentWare.y - this.currentY
-        _x = currentWare.x - this.currentX
-        _y = currentWare.y - this.currentY
-        layerX = _x < 0 ? this.dinnerware[this.currentWareIndex].x - Math.abs(_x) : this.dinnerware[this.currentWareIndex].x + Math.abs(_x)
-        layerY = _y > 0 ? this.dinnerware[this.currentWareIndex].y + Math.abs(_y) : this.dinnerware[this.currentWareIndex].y - Math.abs(_y)
-        this.dinnerware[this.currentWareIndex].x = layerX
-        this.dinnerware[this.currentWareIndex].y = layerY
-        console.log(layerX)
-        console.log(layerY)
-        // currentWare.target.style.transform = `translate(${layerX}px, ${layerY}px)`
-        // const setWare = document.getElementById('ware' + this.currentWareIndex)
-        currentWare.target.style.position = 'relative'
-        currentWare.target.style.left = layerX + 'px'
-        currentWare.target.style.top = layerY + 'px'
-      }else if(this.isMobile()){
-        console.log(div)
-        // 如果放回到选取区内 这自动规整
-        if(!(x < divx1 || x > divx2 || y < divy1 || y > divy2)){
-          // this.dinnerware[this.currentWareIndex].x = 0
-          // this.dinnerware[this.currentWareIndex].y = 0
-          // this.currentWare.target.style.left = 0
-          // this.currentWare.target.style.top = 0
-          // return
-        }
-        console.log(currentWare.changedTouches[0].pageX)
-        _x = currentWare.changedTouches[0].pageX - this.currentX
-        _y = currentWare.changedTouches[0].pageY - this.currentY
-        console.log(_x)
-        layerX = _x < 0 ? this.dinnerware[this.currentWareIndex].x - Math.abs(_x) : this.dinnerware[this.currentWareIndex].x + Math.abs(_x)
-        layerY = _y > 0 ? this.dinnerware[this.currentWareIndex].y + Math.abs(_y) : this.dinnerware[this.currentWareIndex].y - Math.abs(_y)
-        this.dinnerware[this.currentWareIndex].x = layerX
-        this.dinnerware[this.currentWareIndex].y = layerY
-        // currentWare.target.style.transform = `translate(${layerX}px, ${layerY}px)`
-        // const setWare = document.getElementById('ware' + this.currentWareIndex)
-        currentWare.target.style.position = 'relative'
-        currentWare.target.style.left = layerX + 'px'
-        currentWare.target.style.top = layerY + 'px'
-      }else if(this.isTablet()){
-         console.log(currentWare.changedTouches[0].pageX)
-        _x = currentWare.changedTouches[0].pageX - this.currentX
-        _y = currentWare.changedTouches[0].pageY - this.currentY
-        console.log(_x)
-        layerX = _x < 0 ? this.dinnerware[this.currentWareIndex].x - Math.abs(_x) : this.dinnerware[this.currentWareIndex].x + Math.abs(_x)
-        layerY = _y > 0 ? this.dinnerware[this.currentWareIndex].y + Math.abs(_y) : this.dinnerware[this.currentWareIndex].y - Math.abs(_y)
-        this.dinnerware[this.currentWareIndex].x = layerX
-        this.dinnerware[this.currentWareIndex].y = layerY
-        // currentWare.target.style.transform = `translate(${layerX}px, ${layerY}px)`
-        // const setWare = document.getElementById('ware' + this.currentWareIndex)
-        currentWare.target.style.position = 'relative'
-        currentWare.target.style.left = layerX + 'px'
-        currentWare.target.style.top = layerY + 'px'
-      }
-      
+      const _x = currentWare.x ? currentWare.x : currentWare.changedTouches[0].pageX - this.currentX
+      const _y = currentWare.y ? currentWare.y : currentWare.changedTouches[0].pageY - this.currentY
+      const layerX = _x < 0 ? this.dinnerware[this.currentWareIndex].x - Math.abs(_x) : this.dinnerware[this.currentWareIndex].x + Math.abs(_x)
+      const layerY = _y > 0 ? this.dinnerware[this.currentWareIndex].y + Math.abs(_y) : this.dinnerware[this.currentWareIndex].y - Math.abs(_y)
+      this.dinnerware[this.currentWareIndex].x = layerX
+      this.dinnerware[this.currentWareIndex].y = layerY
+      const positionWare = document.getElementById("ware_" + this.currentWareIndex)
+      positionWare.style.left = layerX + 'px'
+      positionWare.style.top = layerY + 'px'
+      this.dinnerware[ this.currentWareIndex].first = false
     }
   }
 };
@@ -163,56 +78,56 @@ export default {
   #daskDrag{
     font-size: 15px;
     color: rgb(156, 44, 44);
-    display: flex;
+    // display: flex;
     position: relative;
+    margin: 10px;
+    .title{
+      margin-left: 10px;
+    }
     #desk{
-      width: 401px;
-      height: 300px;
-      background-color: rgb(247, 241, 234);
-      position: relative;
+      width: 100%;
+      max-width: 800px;
       box-sizing: border-box;
+      height: 300px;
       .dinner{
+        text-align: center;
+        max-width: 80px;
+        width: 80px;
+        background: #b1a2a2;
+        height: 50px;
+        line-height: 50px;
+        margin-top: 60px;
         position: absolute;
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        background-color: pink;
-        box-sizing: border-box;
-      }
-      .center_line{
-        position: absolute;
-        left: 200px;
-        top: 0%;
-        bottom: 0;
-        box-sizing: border-box;
-        width: 1px;
-        background: goldenrod;
-        .text{
-          width: 60px;
-          padding-left: 10px;
-        }
       }
     }
     #dinnerware{
-      margin-left: 15px;
-      width: 200px;
-      // background: rgb(196, 232, 233);
+      width: 100%;
+      max-width: 800px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      box-sizing: border-box;
       .ware{
-        background-color: rgb(206, 205, 252);
         cursor: pointer;
+        z-index: 1000;
+        margin-top: 60px;
+        position: absolute;
+        z-index: 1000
       }
-      // #ware_0 {
-        // transform: translate(-256px, 9px);
-      // }
+      .wareImage{
+        max-width: 80px;
+      }
     }
   }
 
   @media screen and (max-width: 991px){
     #daskDrag{
       display: inherit;
+    }
+  }
+  @media only screen and (min-width: 1124px){
+    #dinnerware{
+      margin-bottom: 88px;
     }
   }
 </style>
