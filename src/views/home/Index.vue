@@ -90,7 +90,7 @@ export default {
       box-sizing: border-box;
       height: 300px;
       display: flex;
-      justify-content: left;
+      justify-content: space-between;
       flex-wrap: wrap;
       .dinner{
         text-align: center;
@@ -108,7 +108,7 @@ export default {
       max-width: 800px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: left;
+      justify-content: space-between;
       box-sizing: border-box;
       .ware{
         cursor: pointer;

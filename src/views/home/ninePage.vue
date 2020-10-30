@@ -201,7 +201,7 @@ export default {
       }
       .display-f{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-wrap:wrap;
       }
       .btnChoose{
