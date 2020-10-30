@@ -32,13 +32,13 @@ export default {
   data() {
     return {
       dinnerware: [
-        { first: true, x: 0, y: 10, image:'/images/ware_01.png', left: '193px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_02.jpg', left: '193px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_03.png', left: '153px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_04.png', left: '213px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_05.png', left: '253px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_06.png', left: '253px', pcTop: '0px', mobile: ''},
-        { first: true, x: 0, y: 10, image:'/images/ware_07.png', left: '193px', pcTop: '0px', mobile: ''}
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '193px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '193px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '153px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '213px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '253px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '253px', pcTop: '0px', mobile: ''},
+        { first: true, x: 0, y: 10, image:'./images/one.png', left: '193px', pcTop: '0px', mobile: ''}
       ],
       currentX: 0,
       currentY: 0,
