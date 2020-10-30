@@ -4,10 +4,18 @@
      <p class="fontblack font16 fontbold">练习：中间便餐摆台中，酱油壶、醋壶的距离应该是（ ）cm，酱油壶、醋壶与水杯的距离是（ ）cm。</p>
      <p class="fontgrey mar20 text-l">点击正确答案。</p>
      <div class="display-f">
-        <button class="btnChoose">A. <span class="spanSpace">12</span></button>
-        <button class="btnChoose">B. <span class="spanSpace">35</span></button>
-        <button class="btnChoose">C. <span class="spanSpace">22</span></button>
+       <div>
+         <button class="btnChoose">A. <span class="spanSpace">12</span></button>
+       </div>
+       <div>
+         <button class="btnChoose">B. <span class="spanSpace">35</span></button>
+       </div>
+       <div>
+         <button class="btnChoose">C. <span class="spanSpace">22</span></button>
+       </div>
+      <div>
         <button class="btnChoose">D. <span class="spanSpace">32</span></button>
+      </div>
      </div>
      <div class="foot">
        <button class="agaStudy">
@@ -164,7 +172,7 @@ export default {
     display: flex;
     position: relative;
     #desk{
-      width: 800px;
+      width: 100%;
       height: 600px;
       padding: 20px;
       background-color: rgb(247, 241, 234);
@@ -190,6 +198,17 @@ export default {
           width: 60px;
           padding-left: 10px;
         }
+      }
+      .display-f{
+        display: flex;
+        justify-content: center;
+        flex-wrap:wrap;
+      }
+      .btnChoose{
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 1rem;
+        text-align: center;
       }
     }
     #dinnerware{

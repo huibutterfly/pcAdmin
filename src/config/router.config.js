@@ -34,17 +34,17 @@ export const asyncRouterMap = [{
           permission: 'dashboard_index'
         }
       },
-      {
-        path: '/dashboard4',
-        name: 'dashboard4',
-        component: () => import('@/views/home/Index4'),
-        hidden: false,
-        meta: {
-          title: '首页',
-          icon: 'home',
-          permission: 'dashboard_index'
-        }
-      },
+      // {
+      //   path: '/dashboard4',
+      //   name: 'dashboard4',
+      //   component: () => import('@/views/home/Index4'),
+      //   hidden: false,
+      //   meta: {
+      //     title: '首页',
+      //     icon: 'home',
+      //     permission: 'dashboard_index'
+      //   }
+      // },
       {
         path: '/nine',
         name: 'nine',

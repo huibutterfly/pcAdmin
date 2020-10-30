@@ -86,9 +86,12 @@ export default {
     }
     #desk{
       width: 100%;
-      max-width: 800px;
+      // max-width: 800px;
       box-sizing: border-box;
       height: 300px;
+      display: flex;
+      justify-content: left;
+      flex-wrap: wrap;
       .dinner{
         text-align: center;
         max-width: 80px;
@@ -96,8 +99,8 @@ export default {
         background: #b1a2a2;
         height: 50px;
         line-height: 50px;
-        margin-top: 60px;
-        position: absolute;
+        margin: 60px 10px 20px 10px;
+        // position: absolute;
       }
     }
     #dinnerware{
@@ -105,13 +108,13 @@ export default {
       max-width: 800px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: left;
       box-sizing: border-box;
       .ware{
         cursor: pointer;
         z-index: 1000;
-        margin-top: 60px;
-        position: absolute;
+        margin: 60px 10px 20px 10px;
+        // position: absolute;
         z-index: 1000
       }
       .wareImage{
